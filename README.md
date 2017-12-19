@@ -1,3 +1,3 @@
 # LoveShack
 
-# The Love Shacks's group project Winter 2017
+The Love Shack's group project Winter 2017
