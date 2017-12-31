@@ -1,5 +1,6 @@
 package tetris;
 import java.awt.Color;
+import java.awt.Image;
 import javax.swing.*;
 
 /**
@@ -8,7 +9,10 @@ import javax.swing.*;
  * @since 12/18/2017
  * @see Tetris.java
  */
-public class Tetromino {
+public class Tetromino{
+    
+    private int x, y, dx, dy;
+    private Image image;
     
     /*
     array that stores the shape of the block, used for creating new shapes
@@ -23,6 +27,37 @@ public class Tetromino {
     public void tetromino(){
         layout = new boolean[4][2];
         color = new Color(0, 0, 0);
+    }
+    
+    private void initTetromino(){
+        ImageIcon ii = new ImageIcon("redBlock.jpeg");
+        image = ii.getImage();
+        
+        for(int i = 0; i < 2; i++){
+            for(int j = 0; j < 4; j++){
+                if(layout[j][i]){
+                    x = j * 30;
+                    y = i * 30;
+                }
+            }
+        }   
+    }
+    
+    public void move() {
+        x += dx;
+        y += dy;
+    }
+    
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public Image getImage() {
+        return image;
     }
     
     public void tetromino(int shape){
@@ -70,6 +105,8 @@ public class Tetromino {
                                               };
                     color = Color.RED;       
             default: tetromino();
+            
+            initTetromino();
         }
     }
     

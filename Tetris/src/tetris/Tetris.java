@@ -17,16 +17,9 @@ public class Tetris {
         base.setSize(500, 500); //JFrame base size
         base.setVisible(true);
     }
-    public void displayPiece(Tetromino p){
-        for(int i = 0; i < 2; i++){
-            for(int j = 0; j < 4; j++){
-                if(p.layout[j][i]){
-                    
-                }
-            }
-        }
-    }
+
     public static void main(String[] args) {
         initializeTetris();
+        
     }
 }
