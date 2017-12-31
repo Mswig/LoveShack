@@ -36,7 +36,7 @@ public class Tetromino{
         for(int i = 0; i < 2; i++){
             for(int j = 0; j < 4; j++){
                 if(layout[i][j]){
-                    blockList.add(new Block(j*30, i*30));
+                    blockList.add(new Block(j*30, i*30, color));
                 }
             }
         }   
@@ -68,42 +68,42 @@ public class Tetromino{
                                               {false, true, false, false},
                                               {false, true, true, true},
                                               };
-                    color = 1;
+                    color = 2;
                     break;
             // "L" piece
             case 3: layout = new boolean[][] { 
                                               {false, false, false, true},
                                               {false, true, true, true},
                                               };
-                    color = 1;
+                    color = 3;
                     break;
             // "O" piece
             case 4: layout = new boolean[][] { 
                                               {false, true, true, false},
                                               {false, true, true, false},
                                               };
-                    color = 1;
+                    color = 4;
                     break;
             // "S" piece
             case 5: layout = new boolean[][] { 
                                               {false, true, true, false},
                                               {true, true, false, false},
                                               };
-                    color = 1;
+                    color = 5;
                     break;
             // "T" piece
             case 6: layout = new boolean[][] { 
                                               {false, false, true, false},
                                               {false, true, true, true},
                                               };
-                    color = 1;
+                    color = 6;
                     break;
             // "Z" piece
             case 7: layout = new boolean[][] { 
                                               {true, true, false, false},
                                               {false, true, true, false},
                                               };
-                    color = 1;
+                    color = 7;
                     break;
         }
         initTetromino();

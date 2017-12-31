@@ -29,10 +29,8 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        tetro = new Tetromino(4);
-        //block = new Block();
-        //Block block2 = new Block(60,60);
-        
+        tetro = new Tetromino(2);
+
         timer = new Timer(DELAY, this);
         timer.start();        
     }
