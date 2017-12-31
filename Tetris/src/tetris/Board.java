@@ -64,12 +64,16 @@ public class Board extends JPanel implements ActionListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            block.keyReleased(e);
+            for(int i = 0; i < tetro.blockList.size(); i++){
+                tetro.blockList.get(i).keyReleased(e);
+            }
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            block.keyPressed(e);
+            for(int i = 0; i < tetro.blockList.size(); i++){
+                tetro.blockList.get(i).keyPressed(e);
+            }
         }
     }
 }
