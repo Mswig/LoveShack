@@ -23,8 +23,10 @@ public class Tetromino{
     integer value that stores the color of the block
     */
     public Color color;
+
+
     
-    public void tetromino(){
+    public Tetromino(){
         layout = new boolean[4][2];
         color = new Color(0, 0, 0);
     }
@@ -60,7 +62,7 @@ public class Tetromino{
         return image;
     }
     
-    public void tetromino(int shape){
+    public Tetromino(int shape){
         switch(shape){
             // "I" piece
             case 1: layout = new boolean[][] { 
@@ -104,7 +106,7 @@ public class Tetromino{
                                               {false, true, true, false},
                                               };
                     color = Color.RED;       
-            default: tetromino();
+            default: 
             
             initTetromino();
         }
