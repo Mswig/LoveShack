@@ -29,7 +29,7 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        tetro = new Tetromino(1);
+        tetro = new Tetromino(4);
         //block = new Block();
         //Block block2 = new Block(60,60);
         
@@ -56,7 +56,7 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) { 
         tetro.move();
-        //block.drop();
+        //tetro.drop();
         repaint();  
     }
 
