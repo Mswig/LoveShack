@@ -18,7 +18,7 @@ public class Tetris extends JFrame {
     private void initializeTetris(){      
         add(new Board());
         
-        setSize(400, 300);
+        setSize(300, 600);
         setResizable(false);
         
         setTitle("Love Shack Tetris");

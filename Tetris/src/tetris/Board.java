@@ -16,7 +16,8 @@ public class Board extends JPanel implements ActionListener {
     
     private Timer timer;
     private Block block;
-    private final int DELAY = 10;
+    private Tetromino tetro;
+    private final int DELAY = 50;
     
     public Board() {
         initBoard();
@@ -28,8 +29,10 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        block = new Block();
-
+        tetro = new Tetromino(1);
+        //block = new Block();
+        //Block block2 = new Block(60,60);
+        
         timer = new Timer(DELAY, this);
         timer.start();        
     }
@@ -43,16 +46,17 @@ public class Board extends JPanel implements ActionListener {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    private void doDrawing(Graphics g) {
-        
+    private void doDrawing(Graphics g) {  
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(block.getImage(), block.getX(), block.getY(), this);        
+        for(int i = 0; i < tetro.blockList.size(); i++){
+            g2d.drawImage(tetro.blockList.get(i).getImage(), tetro.blockList.get(i).getX(), tetro.blockList.get(i).getY(), this);    
+        }
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-        
-        block.move();
+    public void actionPerformed(ActionEvent e) { 
+        tetro.move();
+        //block.drop();
         repaint();  
     }
 

@@ -1,6 +1,7 @@
 package tetris;
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -11,9 +12,6 @@ import javax.swing.*;
  */
 public class Tetromino{
     
-    private int x, y, dx, dy;
-    private Image image;
-    
     /*
     array that stores the shape of the block, used for creating new shapes
     */
@@ -22,44 +20,32 @@ public class Tetromino{
     /*
     integer value that stores the color of the block
     */
-    public Color color;
+    public int color;
 
-
+    public ArrayList<Block> blockList = new ArrayList<>();
+    
+    
+    private Block block;
     
     public Tetromino(){
         layout = new boolean[4][2];
-        color = new Color(0, 0, 0);
+        color = 1;
     }
     
     private void initTetromino(){
-        ImageIcon ii = new ImageIcon("redBlock.jpeg");
-        image = ii.getImage();
-        
         for(int i = 0; i < 2; i++){
             for(int j = 0; j < 4; j++){
-                if(layout[j][i]){
-                    x = j * 30;
-                    y = i * 30;
+                if(layout[i][j]){
+                    blockList.add(new Block(j*30, i*30));
                 }
             }
         }   
     }
     
     public void move() {
-        x += dx;
-        y += dy;
-    }
-    
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public Image getImage() {
-        return image;
+       for(int i = 0; i < blockList.size(); i++){
+           blockList.get(i).move();
+       }
     }
     
     public Tetromino(int shape){
@@ -69,43 +55,43 @@ public class Tetromino{
                                               {false, false, false, false},
                                               {true, true, true, true},
                                               };
-                    color = Color.CYAN;
+                    color = 1;
             // "J" piece
             case 2: layout = new boolean[][] { 
                                               {false, true, false, false},
                                               {false, true, true, true},
                                               };
-                    color = Color.BLUE;
+                    color = 1;
             // "L" piece
             case 3: layout = new boolean[][] { 
                                               {false, false, false, true},
                                               {false, true, true, true},
                                               };
-                    color = Color.ORANGE;
+                    color = 1;
             // "O" piece
             case 4: layout = new boolean[][] { 
                                               {false, true, true, false},
                                               {false, true, true, false},
                                               };
-                    color = Color.YELLOW;
+                    color = 1;
             // "S" piece
             case 5: layout = new boolean[][] { 
                                               {false, true, true, false},
                                               {true, true, false, false},
                                               };
-                    color = Color.GREEN;
+                    color = 1;
             // "T" piece
             case 6: layout = new boolean[][] { 
                                               {false, false, true, false},
                                               {false, true, true, true},
                                               };
-                    color = Color.MAGENTA;
+                    color = 1;
             // "Z" piece
             case 7: layout = new boolean[][] { 
                                               {true, true, false, false},
                                               {false, true, true, false},
                                               };
-                    color = Color.RED;       
+                    color = 1;       
             default: 
             
             initTetromino();

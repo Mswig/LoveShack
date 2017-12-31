@@ -18,11 +18,22 @@ public class Block {
         initBlock();
     }
     
+    public Block(int x, int y) {
+        initBlock(x,y);
+    }
+    
     private void initBlock() {
         ImageIcon ii = new ImageIcon("redBlock.jpg");
         image = ii.getImage();
-        x = 40;
-        y = 60;        
+        x = 0;
+        y = 0;        
+    }
+    
+    private void initBlock(int x, int y) {
+        ImageIcon ii = new ImageIcon("redBlock.jpg");
+        image = ii.getImage();
+        this.x = x;
+        this.y = y;        
     }
     
     public void move() {
@@ -33,7 +44,11 @@ public class Block {
     public int getX() {
         return x;
     }
-
+    
+    public void drop() {
+        y += 30;
+    }
+    
     public int getY() {
         return y;
     }
@@ -47,11 +62,11 @@ public class Block {
         int key = e.getKeyCode();
 
         if (key == KeyEvent.VK_LEFT) {
-            dx = -1;
+            dx = -30;
         }
 
         if (key == KeyEvent.VK_RIGHT) {
-            dx = 1;
+            dx = 30;
         }
 
         if (key == KeyEvent.VK_UP) {
