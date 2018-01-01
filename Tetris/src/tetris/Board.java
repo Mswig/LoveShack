@@ -7,6 +7,7 @@ package tetris;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import java.util.Random;
 
 /**
  *
@@ -14,9 +15,11 @@ import javax.swing.*;
  */
 public class Board extends JPanel implements ActionListener { 
     
+    final public static Random RAND = new Random();
+    
     private Timer timer;
     private Block block;
-    private Tetromino tetro;
+    public Tetromino tetro;
     private final int DELAY = 50;
     
     public Board() {
@@ -29,10 +32,15 @@ public class Board extends JPanel implements ActionListener {
         setFocusable(true);
         setBackground(Color.BLACK);
 
-        tetro = new Tetromino(2);
-
+        generatePiece();
+        
         timer = new Timer(DELAY, this);
         timer.start();        
+    }
+    
+    public void generatePiece(){
+        int r = RAND.nextInt(7)+1;
+        tetro = new Tetromino(r);
     }
     
     @Override
@@ -54,7 +62,7 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) { 
         tetro.move();
-        //tetro.drop();
+        tetro.drop();
         repaint();  
     }
 
@@ -62,16 +70,12 @@ public class Board extends JPanel implements ActionListener {
 
         @Override
         public void keyReleased(KeyEvent e) {
-            for(int i = 0; i < tetro.blockList.size(); i++){
-                tetro.blockList.get(i).keyReleased(e);
-            }
+                tetro.keyReleased(e);
         }
 
         @Override
         public void keyPressed(KeyEvent e) {
-            for(int i = 0; i < tetro.blockList.size(); i++){
-                tetro.blockList.get(i).keyPressed(e);
-            }
+                tetro.keyPressed(e);
         }
     }
 }

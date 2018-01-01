@@ -12,7 +12,7 @@ public class Block {
     private int dy;
     private int x;
     private int y;
-    private int color;
+    private int r;
     private Image image;
     
     public Block() {
@@ -65,7 +65,7 @@ public class Block {
         this.x = x;
         this.y = y;        
     }
-    
+
     public void move() {
         x += dx;
         y += dy;
@@ -75,59 +75,34 @@ public class Block {
         return x;
     }
     
+    public int getDX() {
+        return dx;
+    }
+    
     public void drop() {
-        y += 30;
+        y += 5;
     }
     
     public int getY() {
         return y;
     }
     
+    public void setDX(int i){
+        dx = i;
+    }
+    
+    public void setX(int i){
+        x = i;
+    }
+    
+    public void setY(int i){
+        y = i;
+    }
+    
     public Image getImage() {
         return image;
     }
     
-    public void keyPressed(KeyEvent e) {
-
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = -30;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 30;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dy = -1;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 1;
-        }
-    }
-
-    public void keyReleased(KeyEvent e) {
-        
-        int key = e.getKeyCode();
-
-        if (key == KeyEvent.VK_LEFT) {
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_RIGHT) {
-            dx = 0;
-        }
-
-        if (key == KeyEvent.VK_UP) {
-            dy = 0;
-        }
-
-        if (key == KeyEvent.VK_DOWN) {
-            dy = 0;
-        }
-    }
 }
 
 

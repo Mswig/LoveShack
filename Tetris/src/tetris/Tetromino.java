@@ -1,6 +1,7 @@
 package tetris;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -21,7 +22,8 @@ public class Tetromino{
     integer value that stores the color of the block
     */
     public int color;
-
+    public int centerX;
+    public int centerY;
     public ArrayList<Block> blockList = new ArrayList<>();
     
     
@@ -30,6 +32,8 @@ public class Tetromino{
     public Tetromino(){
         layout = new boolean[4][2];
         color = 1;
+        centerX = 0;
+        centerY = 0;
     }
     
     private void initTetromino(){
@@ -39,12 +43,27 @@ public class Tetromino{
                     blockList.add(new Block(j*30, i*30, color));
                 }
             }
-        }   
+        }
+        centerX = 0;
+        centerY = 0;
+    } 
+    
+    public void rotateRight() {
+        int rX;
+        for(int i = 1; i < blockList.size(); i++){
+            blockList.get(i).setY(blockList.get(i).getY() - (blockList.get(i).getX() - centerX) + 30);
+            blockList.get(i).setX(blockList.get(i).getX() - (blockList.get(i).getX() - centerX) - 30);
+        }
     }
     
     public void move() {
        for(int i = 0; i < blockList.size(); i++){
            blockList.get(i).move();
+       }
+       if(blockList.get(0).getDX() == 30){
+           centerX += 30;
+       } else if(blockList.get(0).getDX() == -30){
+           centerX += -30;
        }
     }
     
@@ -52,6 +71,7 @@ public class Tetromino{
        for(int i = 0; i < blockList.size(); i++){
            blockList.get(i).drop();
        }
+       centerY += 5;
     }
     
     public Tetromino(int shape){
@@ -107,6 +127,56 @@ public class Tetromino{
                     break;
         }
         initTetromino();
+    }
+    
+    public void keyPressed(KeyEvent e) {
+
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_LEFT) {
+            for(int i = 0; i < blockList.size(); i++){
+                blockList.get(i).setDX(-30);
+            }
+        }
+
+        if (key == KeyEvent.VK_RIGHT) {
+            for(int i = 0; i < blockList.size(); i++){
+                blockList.get(i).setDX(30);
+            }
+        }
+
+        if (key == KeyEvent.VK_UP) {
+            rotateRight();
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+            rotateRight();
+        }
+    }
+
+    public void keyReleased(KeyEvent e) {
+        
+        int key = e.getKeyCode();
+
+        if (key == KeyEvent.VK_LEFT) {
+            for(int i = 0; i < blockList.size(); i++){
+                blockList.get(i).setDX(0);
+            }
+        }
+
+        if (key == KeyEvent.VK_RIGHT) {
+            for(int i = 0; i < blockList.size(); i++){
+                blockList.get(i).setDX(0);
+            }
+        }
+
+        if (key == KeyEvent.VK_UP) {
+  
+        }
+
+        if (key == KeyEvent.VK_DOWN) {
+
+        }
     }
     
 }
